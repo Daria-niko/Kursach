@@ -1,31 +1,26 @@
-name: Check Code Style
+name: Check
 
 on:
   push:
     branches:
-      - master
-      - new
-  pull_request:
-    branches:
-      - master
-      - new
+      - main  # или любая другая ветка, если это необходимо
+
 
 jobs:
-  checkcode:
+  test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Clone repo
+      - name: Check out code
         uses: actions/checkout@v2
 
-      - name: Check python version
-        uses: actions/setup-python@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          python-version: '3.12.3'
+          node-version: '14'  # Use your desired version of Node.js
 
       - name: Install dependencies
-        run: |
-          pip install pycodestyle
+        run: npm install  # Adjust to your package manager (e.g., yarn install)
 
-      - name: Run Linter
-        run: |
-          pycodestyle
+      - name: Run tests
+        run: npm test  # Or whatever command runs your tests
