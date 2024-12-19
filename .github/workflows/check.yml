@@ -1,26 +1,42 @@
-name: Check
+name: Django CI
 
 on:
   push:
     branches:
-      - main  # или любая другая ветка, если это необходимо
-
+      - main  # Укажите вашу основную ветку
+  pull_request:
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
+      # Шаг 1: Клонирование кода
       - name: Check out code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      # Шаг 2: Установка Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          node-version: '14'  # Use your desired version of Node.js
+          python-version: '3.9'  # Укажите используемую версию Python
 
+      # Шаг 3: Установка зависимостей
       - name: Install dependencies
-        run: npm install  # Adjust to your package manager (e.g., yarn install)
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
 
+      # Шаг 4: Применение миграций базы данных
+      - name: Run migrations
+        run: |
+          source venv/bin/activate
+          python manage.py migrate
+
+      # Шаг 5: Запуск тестов
       - name: Run tests
-        run: npm test  # Or whatever command runs your tests
+        run: |
+          source venv/bin/activate
+          python manage.py test
