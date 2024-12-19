@@ -1,38 +1,31 @@
-name: Django CI
+name: Check Code Style
 
 on:
   push:
     branches:
-      - main
+      - master
+      - new
   pull_request:
+    branches:
+      - master
+      - new
 
 jobs:
-  lint:
-    name: Lint Code with flake8
+  checkcode:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Clone repo
+        uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Check python version
+        uses: actions/setup-python@v2
         with:
-          python-version: 3.9
+          python-version: '3.12.3'
 
       - name: Install dependencies
         run: |
-          python -m venv venv
-          source venv/bin/activate
-          pip install --upgrade pip
-          pip install flake8
-          pip install -r requirements.txt
+          pip install pycodestyle
 
-      - name: Run flake8
+      - name: Run Linter
         run: |
-          source venv/bin/activate
-          flake8 . --exclude=venv --max-line-length=120
-
-  test:
-    name: Run Tests
-
+          pycodestyle
