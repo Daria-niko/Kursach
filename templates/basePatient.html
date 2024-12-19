@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Пациент{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'style/dop.css' %}"/>
+    <link rel="stylesheet" href="{% static 'style/lightbox.css' %}"/>
+    <link rel="stylesheet" href="{% static 'style/menu.css' %}"/>
+    <link rel="stylesheet" href="{% static 'style/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'style/style1.css' %}"/>
+    <link rel="stylesheet" href="{% static 'style/zerogrid.css' %}"/>
+</head>
+<body>
+    <header>
+        {% include 'Includes/headerPatient.html' %}
+    </header>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        {% include 'Includes/footer.html' %}
+    </footer>
+</body>
+</html>

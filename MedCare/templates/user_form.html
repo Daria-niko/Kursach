@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <title>Создать/Редактировать пользователя</title>
+
+<body>
+    <h1>{% if form.instance.pk %}Редактировать пользователя{% else %}Создать пользователя{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if form.instance.pk %}Сохранить{% else %}Создать{% endif %}</button>
+    </form>
+    <a href="{% url 'user_list' %}">Назад</a>
+</body>
+{% endblock %}

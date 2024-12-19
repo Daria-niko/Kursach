@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="log-container">
+    <h2>Логи пользователей</h2>
+    <table class="log-table">
+        <thead>
+            <tr>
+                <th>Дата и время</th>
+                <th>Пользователь</th>
+                <th>Действие</th>
+                <th>Объект</th>
+                <th>Содержание</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+            <tr>
+                <td>{{ log.action_time }}</td>
+                <td>{{ log.user }}</td>
+                <td>
+                    {% if log.action_flag == 1 %}
+                        Создано
+                    {% elif log.action_flag == 2 %}
+                        Изменено
+                    {% elif log.action_flag == 3 %}
+                        Удалено
+                    {% endif %}
+                </td>
+                <td>{{ log.content_type }}</td>
+                <td>{{ log.object_repr }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">Нет логов для отображения</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .log-container {
+        margin: 50px auto;
+        max-width: 800px;
+    }
+    .log-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .log-table th, .log-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    .log-table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}

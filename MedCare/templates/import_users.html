@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Импорт пользователей из CSV</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="csv_file" class="form-label">Выберите CSV файл:</label>
+                            <input type="file" class="form-control" name="csv_file" id="csv_file" accept=".csv" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success">Импортировать</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <a href="{% url 'user_list' %}" class="btn btn-secondary">Назад к списку пользователей</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

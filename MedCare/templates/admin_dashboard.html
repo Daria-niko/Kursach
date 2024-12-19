@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Управление базой данных</h1>
+
+    <!-- Форма создания резервной копии -->
+    <div class="mb-3 text-center">
+        <form action="{% url 'backup_database' %}" method="get">
+            <button type="submit" class="btn btn-primary">Создать резервную копию</button>
+        </form>
+    </div>
+
+    <!-- Экспорт данных -->
+    <div class="mb-3 text-center">
+        <a href="{% url 'export_sql' %}" class="btn btn-success">Экспортировать данные о пользователях и их медкартах в SQL</a>
+    </div>
+
+    <!-- Импорт данных -->
+    <div class="text-center">
+        <a href="{% url 'import_sql' %}" class="btn btn-warning">Импортировать данные о пользователях и их медкартах из SQL</a>
+    </div>
+</div>
+{% endblock %}

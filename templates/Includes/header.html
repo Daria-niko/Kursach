@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'admin_dashboard' %}">MedCare</a>
+        <!-- Кнопка для мобильного меню -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+
+        <!-- Основное меню -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'user_list' %}">Пользователи</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'medical_staff_list' %}">Медработники</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'patient_list' %}">Пациенты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'education_list' %}">Образование</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'medical_card_list' %}">Карты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'medical_record_list' %}">Записи</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'appointment_type_list' %}">Тип приема</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'record_status_list' %}">Статус записи</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'statistics' %}">Статистика</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user_logs' %}">Логи</a>
+                </li>
+            </ul>
+                <a class="nav-link" href="{% url 'login' %}">Выйти</a>
+      
+            
+        </div>
+    </div>
+</nav>

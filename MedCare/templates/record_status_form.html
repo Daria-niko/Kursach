@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <title>{% if form.instance.pk %}Редактировать статус записи{% else %}Добавить статус записи{% endif %}</title>
+
+<body>
+    <h1>{% if form.instance.pk %}Редактировать статус записи{% else %}Добавить статус записи{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if form.instance.pk %}Сохранить{% else %}Добавить{% endif %}</button>
+    </form>
+    <a href="{% url 'record_status_list' %}">Назад</a>
+</body>
+{% endblock %}

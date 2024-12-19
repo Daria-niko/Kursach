@@ -1,0 +1,27 @@
+{% extends "basePatient.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Создание медицинской записи</h1>
+    
+    <div class="card shadow p-4">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="patient" class="form-label">Выберите пациента:</label>
+                {{ form.patient }}
+            </div>
+            <div class="mb-3">
+                <label for="date" class="form-label">Дата приема:</label>
+                {{ form.date }}
+            </div>
+            <div class="mb-3">
+                <label for="doctor" class="form-label">Выберите доктора:</label>
+                {{ form.doctor }}
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Создать запись</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

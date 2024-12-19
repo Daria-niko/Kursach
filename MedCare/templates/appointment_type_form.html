@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">{% if form.instance.pk %}Редактировать тип приема{% else %}Добавить тип приема{% endif %}</h1>
+
+    <!-- Форма для добавления/редактирования -->
+    <form method="post" class="bg-light p-4 rounded shadow-sm">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="d-flex justify-content-between mt-3">
+            <a href="{% url 'appointment_type_list' %}" class="btn btn-secondary">Назад</a>
+            <button type="submit" class="btn btn-primary">{% if form.instance.pk %}Сохранить{% else %}Добавить{% endif %}</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

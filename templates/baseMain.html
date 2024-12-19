@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MedCare</title>
+    <link rel="stylesheet" href="{% static 'style/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'style/dop.css' %}"/>
+    <link rel="stylesheet" href="{% static 'style/lightbox.css' %}"/>
+    <link rel="stylesheet" href="{% static 'style/menu.css' %}"/>
+    <link rel="stylesheet" href="{% static 'style/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'style/style1.css' %}"/>
+    <link rel="stylesheet" href="{% static 'style/zerogrid.css' %}"/>
+</head>
+<body>
+    <header>
+        {% include 'Includes/headerMain.html' %}
+    </header>
+
+    <div class="content">
+        {% block content %}
+        {% endblock %} <br>
+        <div class="nav">
+            {% block nav %}
+            {% endblock %}
+        </div>
+    </div>
+
+
+    <footer>
+        {% include 'Includes/footer.html' %}
+    </footer>
+</body>
+</html>

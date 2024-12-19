@@ -1,0 +1,78 @@
+<!-- statistics.html -->
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статистика</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <body>
+        <h1>Статистика</h1>
+
+        <!-- Круговая диаграмма по статусам -->
+        <h2>Процентное соотношение медицинских записей по статусам</h2>
+        <div id="records_chart"></div>
+
+        <script>
+            var data = [{
+                labels: [
+                    {% for item in records_by_status %}
+                        "{{ item.record_status__name }}",
+                    {% endfor %}
+                ],
+                values: [
+                    {% for item in records_by_status %}
+                        {{ item.count }},
+                    {% endfor %}
+                ],
+                type: 'pie',
+                hole: 0.4,
+                textinfo: 'percent',
+                marker: {
+                    colors: ['#ff6666', '#66b3ff', '#99ff99', '#ffcc99', '#c2c2f0']
+                }
+            }];
+            var layout = {
+                title: 'Процентное соотношение по статусам записей',
+            };
+            Plotly.newPlot('records_chart', data, layout);
+        </script>
+
+        <!-- Столбчатая диаграмма по ролям пользователей -->
+        <h2>Количество пользователей по ролям</h2>
+        <div id="roles_chart"></div>
+
+        <script>
+            var data = [{
+                x: [
+                    {% for item in users_by_role %}
+                        "{{ item.role__name }}",
+                    {% endfor %}
+                ],
+                y: [
+                    {% for item in users_by_role %}
+                        {{ item.count }},
+                    {% endfor %}
+                ],
+                type: 'bar',  // Указываем, что это столбчатая диаграмма
+                marker: {
+                    color: '#4caf50',  // Цвет столбцов
+                }
+            }];
+            var layout = {
+                title: 'Количество пользователей по ролям',
+                xaxis: {
+                    title: 'Роли'
+                },
+                yaxis: {
+                    title: 'Количество пользователей'
+                },
+                barmode: 'group'
+            };
+            Plotly.newPlot('roles_chart', data, layout);
+        </script>
+
+    </body>
+{% endblock %}
