@@ -2,28 +2,19 @@ import csv
 import os
 
 from django.contrib.admin.models import LogEntry
-from django.contrib.auth.decorators import login_required
-from django.core.files.storage import FileSystemStorage
 from django.core.management  import call_command
-from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator
 from django.db import transaction
 from django.db.models import Count
 from django.db.models.functions import ExtractYear
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 
-# Create your views here.
 
-from django.shortcuts import render, redirect
-from django.contrib.auth.hashers import check_password
+from django.shortcuts import render
 from django.utils.timezone import now
-from pyexpat.errors import messages
 
-from NewMedCity import settings
 from .filters import MedicalRecordFilter
 from .forms import *
-from .models import User
 from .utils import role_required
 
 

@@ -1,7 +1,6 @@
-from django.conf.urls.static import static
+
 from django.urls import path
 
-from NewMedCity import settings
 from . import views
 
 urlpatterns = [

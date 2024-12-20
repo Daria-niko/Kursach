@@ -1,6 +1,4 @@
 from cryptography.fernet import Fernet
-from django.contrib.auth.models import AnonymousUser
-from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth.hashers import make_password, check_password
 
